@@ -1,22 +1,30 @@
-cmake_minimum_required(VERSION 3.10)
-project(miifu VERSION 0.0.2 DESCRIPTION "Core Mii Implementation")
-
-add_library(miifu SHARED
-	gen/FFLResource.cpp
-	gen/Ver3StoreData.cpp
+cmake_minimum_required(VERSION 3.14)
+project(miifu
+	VERSION 0.0.2
+	DESCRIPTION "Core Mii Implementation"
+	LANGUAGES CXX
 )
 
-set_target_properties(miifu PROPERTIES VERSION ${PROJECT_VERSION})
-set_target_properties(miifu PROPERTIES PUBLIC_HEADER
-	"include/miifu.hpp"
+option(MIIFU_BUILD_SHARED "Build miifu as a shared library" OFF)
+
+if(MIIFU_BUILD_SHARED)
+	add_library(miifu SHARED)
+else()
+	add_library(miifu STATIC)
+endif()
+
+target_sources(miifu PRIVATE
+	include/miifu.hpp
+	gen/FFLResource.cpp
+	gen/Ver3StoreData.cpp
+	gen/FFLResource.hpp
+	gen/Ver3StoreData.hpp
+)
+
+target_include_directories(miifu
+	PUBLIC
+		${CMAKE_CURRENT_SOURCE_DIR}/include
+		${CMAKE_CURRENT_SOURCE_DIR}/gen
 )
 
 target_compile_features(miifu PRIVATE cxx_std_20)
-
-include(GNUInstallDirs)
-
-install(TARGETS miifu
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-    PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
-)
