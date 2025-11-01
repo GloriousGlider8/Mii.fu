@@ -14,7 +14,6 @@ else()
 endif()
 
 target_sources(miifu PRIVATE
-	include/miifu.hpp
 	gen/FFLResource.cpp
 	gen/Ver3StoreData.cpp
 	gen/FFLResource.hpp
@@ -23,7 +22,6 @@ target_sources(miifu PRIVATE
 
 target_include_directories(miifu
 	PUBLIC
-		${CMAKE_CURRENT_SOURCE_DIR}/include
 		${CMAKE_CURRENT_SOURCE_DIR}/gen
 )
 

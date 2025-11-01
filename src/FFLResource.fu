@@ -99,7 +99,7 @@ public class FFLiResourceLoaderObjects {
 	public FFLiResourcePartsInfo![24] TextureEyebrow;
 	public FFLiResourcePartsInfo![12] TextureWrinkle;
 	public FFLiResourcePartsInfo![12] TextureMakeup;
-	public FFLiResourcePartsInfo![9] TextureGlasses;
+	public FFLiResourcePartsInfo![9] TextureGlass;
 	public FFLiResourcePartsInfo![2] TextureMole;
 	public FFLiResourcePartsInfo![37] TextureMouth;
 	public FFLiResourcePartsInfo![6] TextureMustache;
@@ -109,7 +109,7 @@ public class FFLiResourceLoaderObjects {
 	public FFLiResourcePartsInfo![132] ShapeCapNormal;
 	public FFLiResourcePartsInfo![132] ShapeCapHat;
 	public FFLiResourcePartsInfo![12] ShapeFaceline;
-	public FFLiResourcePartsInfo![1] ShapeGlasses;
+	public FFLiResourcePartsInfo![1] ShapeGlass;
 	public FFLiResourcePartsInfo![12] ShapeMask;
 	public FFLiResourcePartsInfo![18] ShapeNoseline;
 	public FFLiResourcePartsInfo![18] ShapeNose;
@@ -308,7 +308,7 @@ public class FFLiResourceTextureHeader {
 			objects.TextureMakeup[i].FromByteReader(data, objects);
 		}
 		for (int i = 0; i < 9; i++) {
-			objects.TextureGlasses[i].FromByteReader(data, objects);
+			objects.TextureGlass[i].FromByteReader(data, objects);
 		}
 		for (int i = 0; i < 2; i++) {
 			objects.TextureMole[i].FromByteReader(data, objects);
@@ -346,7 +346,7 @@ public class FFLiResourceShapeHeader {
 			objects.ShapeFaceline[i].FromByteReader(data, objects);
 		}
 		for (int i = 0; i < 1; i++) {
-			objects.ShapeGlasses[i].FromByteReader(data, objects);
+			objects.ShapeGlass[i].FromByteReader(data, objects);
 		}
 		for (int i = 0; i < 12; i++) {
 			objects.ShapeMask[i].FromByteReader(data, objects);
