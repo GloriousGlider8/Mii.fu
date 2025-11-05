@@ -1,0 +1,23 @@
+name: Transpiles & Tests
+on: [push, pull_request]
+jobs:
+  python:
+    name: Python
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+          architecture: 'x64'
+          cache: pip
+      - run: |
+          python -m pip install --upgrade pip
+          pip install requests
+      - name: Transpile
+        run: |
+          python ${{github.workspace}}/tests/futdownload.py
+          fut -l py ${{github.workspace}}/mii-fusion-experiments/Ver3StoreData/Crc16Ccitt.fu ${{github.workspace}}/mii-fusion-experiments/Ver3StoreData/Utf16ToUtf8Converter.fu ${{github.workspace}}/mii-fusion-experiments/Ver3StoreData/Ver3StoreData.fu ${{github.workspace}}/mii-fusion-experiments/Ver3StoreData/Ver3CharInfo.fu -o ${{github.workspace}}/tests/miis/Ver3StoreData.py -D py
+      - name: Test
+        run: python ${{github.workspace}}/tests/bulktest.py
+      

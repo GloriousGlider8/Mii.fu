@@ -7,3 +7,5 @@ localtesting/
 .vscode/
 gen/*
 build/
+tests/miis/private/
+tests/miis/Ver3StoreData.py
