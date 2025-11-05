@@ -20,5 +20,5 @@ jobs:
           python ${{github.workspace}}/tests/futdownload.py
           fut -l py ${{github.workspace}}/mii-fusion-experiments/Ver3StoreData/Crc16Ccitt.fu ${{github.workspace}}/mii-fusion-experiments/Ver3StoreData/Utf16ToUtf8Converter.fu ${{github.workspace}}/mii-fusion-experiments/Ver3StoreData/Ver3StoreData.fu ${{github.workspace}}/mii-fusion-experiments/Ver3StoreData/Ver3CharInfo.fu -o ${{github.workspace}}/tests/miis/Ver3StoreData.py -D py
       - name: Test
-        run: python ${{github.workspace}}/tests/bulktest.py
+        run: python ${{github.workspace}}/tests/miis/bulktest.py
       
