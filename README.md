@@ -24,7 +24,7 @@ You can of course output everything to one source file, like so:
 fut -D CPP -n miifu -l cpp src/Readers.fu src/FFLResource.fu mii-fusion-experiments/Ver3StoreData/Ver3CharInfo.fu mii-fusion-experiments/Ver3StoreData/Ver3StoreData.fu mii-fusion-experiments/Ver3StoreData/Crc16Ccitt.fu mii-fusion-experiments/Ver3StoreData/Utf16ToUtf8Converter.fu -o gen/MiiFU.cpp
 ```
 
-> ![NOTE]
+> [!NOTE]
 > You should define the target language using `-D` due to some functions having optimised versions for certain languages.
 
 ## TODOs
