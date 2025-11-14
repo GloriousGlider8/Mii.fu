@@ -1,4 +1,4 @@
-name: Ver3StoreData Transpiles & Tests
+name: FFLResource Transpiles & Tests
 on: [push, pull_request]
 jobs:
   python:
@@ -18,7 +18,7 @@ jobs:
       - name: Transpile
         run: |
           python ${{github.workspace}}/tests/futdownload.py
-          fut -l py ${{github.workspace}}/mii-fusion-experiments/Ver3StoreData/Crc16Ccitt.fu ${{github.workspace}}/mii-fusion-experiments/Ver3StoreData/Utf16ToUtf8Converter.fu ${{github.workspace}}/mii-fusion-experiments/Ver3StoreData/Ver3StoreData.fu ${{github.workspace}}/mii-fusion-experiments/Ver3StoreData/Ver3CharInfo.fu -o ${{github.workspace}}/tests/miis/Ver3StoreData.py
+          fut -l py ${{github.workspace}}/src/FFLResource.fu ${{github.workspace}}/src/Readers.fu -o ${{github.workspace}}/tests/resource/FFLResource.py
       - name: Test
-        run: python ${{github.workspace}}/tests/miis/bulktest.py
+        run: python ${{github.workspace}}/tests/resource/test.py
       
