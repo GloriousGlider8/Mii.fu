@@ -239,7 +239,7 @@ public class FFLiResourcePartsInfo {
 		assert Strategy <= 6, "Strategy too large (should be <= 6)";
 	}
 
-	public void LoadHeader!(ByteReader() data, byte[]# dataBuffer, byte[]! compressedBuffer) {
+	public void LoadHeader!(ByteReader() data, byte[]# dataBuffer, byte[]! compressedBuffer, ZlibImpl compressionImplementation) {
 		if (UncompressedSize == 0) {
 			PartData.SetUnused();
 			return;
@@ -253,7 +253,7 @@ public class FFLiResourcePartsInfo {
 			return;
 		}
 		data.ReadRaw(CompressedSize, compressedBuffer);
-		ZlibImpl.Decompress(compressedBuffer, dataBuffer, WindowBitConverter.FFLiResourceWindowBitsToZlibWindowBits(WindowBits), UncompressedSize);
+		compressionImplementation.Decompress(compressedBuffer, dataBuffer, WindowBitConverter.FFLiResourceWindowBitsToZlibWindowBits(WindowBits), UncompressedSize);
 		BReader = PartData.LoadHeader(dataBuffer);
 		data.Seek(oOffset);
 	}
