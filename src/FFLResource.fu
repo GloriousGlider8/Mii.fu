@@ -2,20 +2,13 @@
 
 /// ZLib compression implementation.
 /// Must be overrided using a library for your target language!
-public static class ZlibImpl {
+public abstract class ZlibImpl {
 	/// Write the decompressed contents of `input` into `output`.
 	/// `windowBits` and `originalSize` must also be specified.
-	public static void Decompress(byte[] input, byte[] output, byte windowBits, uint originalSize) {
-		Console.WriteLine("!! DEFAULT ZlibImpl DOES NOT DO ANYTHING !!");
-		assert false, "You're still using the default ZlibImpl, please override it!";
-	}
-
+	public void Decompress(byte[] input, byte[] output, byte windowBits, uint originalSize) {}
 	/// Write the Compressed contents of `input` into `output`.
 	/// `level` and `windowBits` must also be specified.
-	public static void Compress(byte[] input, byte[] output, byte level, byte windowBits) {
-		Console.WriteLine("!! DEFAULT ZlibImpl DOES NOT DO ANYTHING !!");
-		assert false, "You're still using the default ZlibImpl, please override it!";
-	}
+	public void Compress(byte[] input, byte[] output, byte level, byte windowBits) {}
 }
 
 public enum FFLiTextureFormat {
