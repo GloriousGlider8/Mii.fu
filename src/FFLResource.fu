@@ -5,7 +5,7 @@
 public abstract class ZlibImpl {
 	/// Write the decompressed contents of `input` into `output`.
 	/// `windowBits` and `originalSize` must also be specified.
-	public virtual void Decompress(byte[] input, byte[] output, byte windowBits, uint originalSize) {}
+	public virtual void Decompress(byte[] input, byte[] output, byte windowBits, uint compressedSize, uint originalSize) {}
 	/// Write the Compressed contents of `input` into `output`.
 	/// `level` and `windowBits` must also be specified.
 	public virtual void Compress(byte[] input, byte[] output, byte level, byte windowBits) {}
@@ -246,7 +246,7 @@ public class FFLiResourcePartsInfo {
 			return;
 		}
 		data.ReadRaw(CompressedSize, compressedBuffer);
-		compressionImplementation.Decompress(compressedBuffer, dataBuffer, WindowBitConverter.FFLiResourceWindowBitsToZlibWindowBits(WindowBits), UncompressedSize);
+		compressionImplementation.Decompress(compressedBuffer, dataBuffer, WindowBitConverter.FFLiResourceWindowBitsToZlibWindowBits(WindowBits), CompressedSize, UncompressedSize);
 		BReader = PartData.LoadHeader(dataBuffer);
 		data.Seek(oOffset);
 	}
