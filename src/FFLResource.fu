@@ -5,10 +5,10 @@
 public abstract class ZlibImpl {
 	/// Write the decompressed contents of `input` into `output`.
 	/// `windowBits` and `originalSize` must also be specified.
-	public virtual void Decompress(byte[] input, byte[] output, byte windowBits, uint compressedSize, uint originalSize) {}
+	public virtual void Decompress(byte[] input, byte[]! output, byte windowBits, uint compressedSize, uint originalSize) {}
 	/// Write the Compressed contents of `input` into `output`.
 	/// `level` and `windowBits` must also be specified.
-	public virtual void Compress(byte[] input, byte[] output, byte level, byte windowBits) {}
+	public virtual void Compress(byte[] input, byte[]! output, byte level, byte windowBits) {}
 }
 
 public enum FFLiTextureFormat {
