@@ -37,7 +37,7 @@ public class Vec3 {
 	public float z = Math.NaN;
 
 	/// Reads 3 IEEE 754 4-byte floats into `x`, `y` and `z` respectively.
-	public void FromByteReader!(ByteReader() data) {
+	public void FromByteReader!(ByteReader! data) {
 		x = data.ReadFloat();
 		y = data.ReadFloat();
 		z = data.ReadFloat();
@@ -57,7 +57,7 @@ public class BoundingBox {
 	public Vec3() max;
 
 	/// Reads 2 `Vec3`s into `min` and `max` respectively.
-	public void FromByteReader!(ByteReader() data) {
+	public void FromByteReader!(ByteReader! data) {
 		min.FromByteReader(data);
 		max.FromByteReader(data);
 	}
@@ -118,7 +118,7 @@ public class FFLiPartData {
 	public FFLiPartDataFooter! Footer;
 	public byte[]#[6] Data;
 
-	public void FromByteReader!(ByteReader() bUtils, uint size) {
+	public void FromByteReader!(ByteReader! bUtils, uint size) {
 		for (int i = 0; i < 6; i++) {
 			if (Header.ElementSize[i] <= 20000000 && Header.ElementSize[i] > 0) {
 				bUtils.Seek(Header.ElementOffset[i]);
@@ -164,7 +164,7 @@ public class FFLiPartDataHeader {
 	public BoundingBox() BoundingBox;
 	public Vec3()[6] Transform;
 
-	public void FromByteReader!(ByteReader() bUtils) {
+	public void FromByteReader!(ByteReader! bUtils) {
 		for (int i = 0; i < 6; i++) {
 			ElementOffset[i] = bUtils.ReadSInt(4);
 		}
@@ -193,7 +193,7 @@ public class FFLiPartDataFooter {
 	public FFLiTextureFormat Format;
 	public byte MipCount;
 
-	public void FromByteReader!(ByteReader() data) {
+	public void FromByteReader!(ByteReader! data) {
 		MipOffset = data.ReadUInt(4);
 		Width = data.ReadUShort(2);
 		Height = data.ReadUShort(2);
@@ -215,9 +215,9 @@ public class FFLiResourcePartsInfo {
 	public byte MemoryLevel;
 	public byte Strategy;
 	public FFLiPartData! PartData;
-	ByteReader() BReader;
+	ByteReader! BReader;
 
-	public void FromByteReader!(ByteReader() data, FFLiResourceLoaderObjects() objects) {
+	public void FromByteReader!(ByteReader! data, FFLiResourceLoaderObjects! objects) {
 		Offset = data.ReadUInt(4);
 		UncompressedSize = data.ReadUInt(4);
 		assert (UncompressedSize < 20000000) && ((UncompressedSize % 2) == 0), "Uncompressed Size invalid (should pass UncompressedSize < 20000000 and (UncompressedSize % 2) == 0)";
@@ -232,7 +232,7 @@ public class FFLiResourcePartsInfo {
 		assert Strategy <= 6, "Strategy too large (should be <= 6)";
 	}
 
-	public void LoadHeader!(ByteReader() data, byte[]# dataBuffer, byte[]! compressedBuffer, ZlibImpl compressionImplementation) {
+	public void LoadHeader!(ByteReader! data, byte[]# dataBuffer, byte[]! compressedBuffer, ZlibImpl compressionImplementation) {
 		if (UncompressedSize == 0) {
 			PartData.SetUnused();
 			return;
@@ -263,7 +263,7 @@ public class FFLiResourceHeader {
 	public uint ExpandedBufferSize;
 	public bool IsExpand;
 
-	public void FromByteReader!(ByteReader() data, FFLiResourceLoaderObjects() objects) {
+	public void FromByteReader!(ByteReader! data, FFLiResourceLoaderObjects! objects) {
 		assert data.ReadUTF8(4) == "FFRA", "Magic Header invalid (should be FFRA)";
 		assert data.ReadUInt(4) == 0x00070000, "Version invalid (should be 0x00070000)";
 		UncompressedBufferSize = data.ReadUInt(4);
@@ -277,7 +277,7 @@ public class FFLiResourceHeader {
 public class FFLiResourceTextureHeader {
 	public uint[11] TextureMaxSize;
 
-	public void FromByteReader!(ByteReader() data, FFLiResourceLoaderObjects() objects) {
+	public void FromByteReader!(ByteReader! data, FFLiResourceLoaderObjects! objects) {
 		for (int i = 0; i < 11; i++) {
 			TextureMaxSize[i] = data.ReadUInt(4);
 			assert TextureMaxSize[i] < 20000000 && (TextureMaxSize[i] % 4) == 0, "Texture Max Size invalid (should pass TextureMaxSize < 20000000 and (TextureMaxSize % 4) == 0)";
@@ -321,7 +321,7 @@ public class FFLiResourceTextureHeader {
 public class FFLiResourceShapeHeader {
 	public uint[12] ShapeMaxSize;
 
-	public void FromByteReader!(ByteReader() data, FFLiResourceLoaderObjects() objects) {
+	public void FromByteReader!(ByteReader! data, FFLiResourceLoaderObjects! objects) {
 		for (int i = 0; i < 12; i++) {
 			ShapeMaxSize[i] = data.ReadUInt(4);
 			assert ShapeMaxSize[i] < 20000000 && (ShapeMaxSize[i] % 2) == 0, "Shape Max Size invalid (should pass ShapeMaxSize < 20000000 and (ShapeMaxSize % 2) == 0)";
@@ -380,7 +380,7 @@ public class FFLResource {
 	public bool IsAFL = false;
 
 	/// Loads a resource from a `ByteReader`, storing objects in a `FFLiResourceLoaderObjects` object.
-	public void FromByteReader!(ByteReader() data, FFLiResourceLoaderObjects() objects) {
+	public void FromByteReader!(ByteReader! data, FFLiResourceLoaderObjects! objects) {
 		objects.ResourceHeader.FromByteReader(data, objects);
 		IsAFL23 = objects.ResourceHeader.ExpandedBufferSize == 0x2502DE0;
 		IsAFL = IsAFL23 || objects.ResourceHeader.ExpandedBufferSize == 0x239D5E0;
