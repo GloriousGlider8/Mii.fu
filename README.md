@@ -25,10 +25,10 @@ fut -D CPP -n miifu -l cpp mii-fusion-experiments/Ver3StoreData/Ver3CharInfo.fu 
 
 Be sure to replace `-l cpp`, all `.cpp` extensions and `-D CPP` with the language you're generating for.
 
-You can of course output everything to one source file, like so:
+You can, of course, output everything to one source file, like so:
 
 ```bash
-fut -D CPP -n miifu -l cpp src/Readers.fu src/FFLResource.fu mii-fusion-experiments/Ver3StoreData/Ver3CharInfo.fu mii-fusion-experiments/Ver3StoreData/Ver3StoreData.fu mii-fusion-experiments/Ver3StoreData/Crc16Ccitt.fu mii-fusion-experiments/Ver3StoreData/Utf16ToUtf8Converter.fu -o gen/MiiFU.cpp
+fut -D CPP -n miifu -l cpp src/Readers.fu src/FFLResource.fu mii-fusion-experiments/Ver3StoreData/Ver3CharInfo.fu mii-fusion-experiments/Ver3StoreData/Ver3StoreData.fu mii-fusion-experiments/Ver3StoreData/Crc16Ccitt.fu mii-fusion-experiments/Ver3StoreData/Utf16ToUtf8Converter.fu -o gen/miifu.cpp
 ```
 
 > [!NOTE]
