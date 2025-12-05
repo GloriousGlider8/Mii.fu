@@ -215,7 +215,7 @@ public class FFLiResourcePartsInfo {
 	public byte MemoryLevel;
 	public byte Strategy;
 	public FFLiPartData! PartData;
-	ByteReader! BReader;
+	ByteReader() BReader;
 
 	public void FromByteReader!(ByteReader! data, FFLiResourceLoaderObjects! objects) {
 		Offset = data.ReadUInt(4);

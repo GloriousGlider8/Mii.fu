@@ -20,5 +20,5 @@ jobs:
           python ${{github.workspace}}/tests/futdownload.py
           fut -l py ${{github.workspace}}/src/FFLResource.fu ${{github.workspace}}/src/Readers.fu -o ${{github.workspace}}/tests/resource/FFLResource.py
       - name: Test
-        run: python ${{github.workspace}}/tests/resource/test.py
+        run: python ${{github.workspace}}/tests/resource/bulktest.py
       
