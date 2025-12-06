@@ -16,7 +16,7 @@ git submodule update --recursive --remote mii-fusion-experiments
 Great, now on to generating source files! Make sure you have [fut](https://github.com/fusionlanguage/fut) installed, then run the following.
 
 > [!NOTE]
-> When building using the `CMakeLists.txt`, the following steps are done for you.
+> When building using the provided `CMakeLists.txt`, the following steps are done for you.
 
 ```bash
 fut -D CPP -n miifu -l cpp src/Readers.fu src/FFLResource.fu -o gen/FFLResource.cpp

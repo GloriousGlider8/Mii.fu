@@ -80,16 +80,6 @@ public static class WindowBitConverter {
 	}
 }
 
-/// Container class for the bytearrays for Guest A-F.ffsd
-public static class GuestMiis {
-	public byte[] GuestA = resource<byte[]>("datfiles/Guest A.ffsd");
-	public byte[] GuestB = resource<byte[]>("datfiles/Guest B.ffsd");
-	public byte[] GuestC = resource<byte[]>("datfiles/Guest C.ffsd");
-	public byte[] GuestD = resource<byte[]>("datfiles/Guest D.ffsd");
-	public byte[] GuestE = resource<byte[]>("datfiles/Guest E.ffsd");
-	public byte[] GuestF = resource<byte[]>("datfiles/Guest F.ffsd");
-}
-
 /// Passed to `FFLResource.FromByteReader` to provide more options for memory-management.
 public class FFLiResourceLoaderObjects {
 	public FFLiResourceHeader! ResourceHeader;
